@@ -27,6 +27,12 @@ export enum ProductCategory {
     ANTIQUE = 'antique',
     RESTORED = 'restored'
   }
+  interface IDimensions {
+    length?: number;
+    width?: number;
+    height?: number;
+    weight?: number; // in grams
+  }
   
   @Schema({ timestamps: true })
 
@@ -59,17 +65,14 @@ export enum ProductCategory {
     images: string[]; // Array of image URLs
   
     @Prop({
-      length: Number,
-      width: Number,
-      height: Number,
-      weight: Number
+      type: {
+        length: { type: Number },
+        width: { type: Number },
+        height: { type: Number },
+        weight: { type: Number }
+      }
     })
-    dimensions: {
-      length?: number;
-      width?: number;
-      height?: number;
-      weight?: number; // in grams
-    };
+    dimensions? : IDimensions
   
     @Prop([String])
     materials: string[]; // e.g., ['wood', 'bronze', 'ivory']

@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ProductsModule } from './Product/products.module';
 
 
 const mongodb  = process.env.MONGODB_URI as string;
@@ -14,7 +15,8 @@ const mongodb  = process.env.MONGODB_URI as string;
       isGlobal:true,
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI || mongodb),
-    AuthModule
+    AuthModule,
+    ProductsModule
 
   ],
   controllers: [AppController],
